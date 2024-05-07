@@ -42,9 +42,7 @@ public class RegistrarUsuario {
         Usuario usuario = new Usuario(nome, email, senhaCriptografada, permissoes);
 
         // Persistência do usuário no banco de dados
-        repositorioUsuario.salvarUsuario(usuario);
-
         // Retorno do ID do usuário criado
-        return usuario.getId();
+        return repositorioUsuario.salvarUsuario(usuario);
     }
 }

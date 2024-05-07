@@ -4,6 +4,6 @@ import br.com.authservice.core.domain.model.Usuario;
 
 public interface RepositorioUsuario {
     Usuario buscarUsuarioPorEmail(String email);
-    void salvarUsuario(Usuario usuario);
+    Long salvarUsuario(Usuario usuario);
     Usuario buscarUsuarioPorToken(String token);
 }

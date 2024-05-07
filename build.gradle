@@ -1,34 +1,73 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.2.5'
-	id 'io.spring.dependency-management' version '1.1.4'
+ id 'java'
+ id 'groovy' // Adicione este plugin para suportar Groovy
+ id 'org.springframework.boot' version '3.2.5'
+ id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'br.com'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '17'
+ sourceCompatibility = '17'
 }
 
 repositories {
-	mavenCentral()
+ mavenCentral()
+}
+
+// Spring Boot dependencies
+dependencies {
+ implementation 'org.springframework.boot:spring-boot-starter'
+ implementation 'org.springframework.boot:spring-boot-starter-actuator'
+ implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+ implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+ implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+ implementation 'org.springframework.boot:spring-boot-starter-validation'
+ implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+// Security dependencies
+dependencies {
+ implementation 'org.springframework.security:spring-security-core'
+}
+
+// Database dependencies
+dependencies {
+ implementation 'org.postgresql:postgresql:42.3.6'
+ implementation 'com.h2database:h2'
+}
+
+// Other dependencies
+dependencies {
+ implementation 'org.projectlombok:lombok'
+ implementation 'com.fasterxml.jackson.core:jackson-databind'
+ implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+ annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+}
+
+// Test dependencies
+dependencies {
+ testImplementation 'org.springframework.boot:spring-boot-starter-test'
+ testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0' // Adicione esta linha
+ testImplementation 'org.spockframework:spock-junit4:2.0-groovy-3.0' // Adicione esta linha
+ testImplementation 'org.codehaus.groovy:groovy-all:3.0.7' // Adicione esta linha
 }
 
 dependencies {
-	implementation 'org.springframework.security:spring-security-core'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.projectlombok:lombok'
-	implementation 'com.h2database:h2'
-	implementation 'com.fasterxml.jackson.core:jackson-databind'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+ compileOnly 'org.projectlombok:lombok:1.18.20'
+ annotationProcessor 'org.projectlombok:lombok:1.18.20'
+ annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+}
+
+tasks.withType(JavaCompile) {
+ options.compilerArgs += [
+     '-Amapstruct.suppressGeneratorTimestamp=true',
+     '-Amapstruct.defaultComponentModel=spring',
+     '-Amapstruct.unmappedTargetPolicy=ERROR'
+ ]
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+ useJUnitPlatform()
 }
-

@@ -1,4 +1,4 @@
-package br.com.authservice.presentation.controllers.dto;
+package br.com.authservice.infrastructure.controllers.dto;
 
 import br.com.authservice.core.domain.model.Permissao;
 import lombok.AllArgsConstructor;

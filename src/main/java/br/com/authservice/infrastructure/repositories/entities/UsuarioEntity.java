@@ -22,7 +22,7 @@ public class UsuarioEntity {
 
     private String senha;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
         name = "usuario_permissao",
         joinColumns = @JoinColumn(name = "usuario_id"),
@@ -33,10 +33,10 @@ public class UsuarioEntity {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Set<TokenEntity> tokens;
 
-    public TokenEntity getActiveToken() {
-        return tokens.stream()
-            .filter(token -> !token.isExpirado())
-            .findFirst()
-            .orElse(null);
-    }
+//    public TokenEntity getActiveToken() {
+//        return tokens.stream()
+//            .filter(token -> !token.isExpirado())
+//            .findFirst()
+//            .orElse(null);
+//    }
 }

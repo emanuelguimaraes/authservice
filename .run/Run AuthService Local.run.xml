@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run AuthService Local" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <envs>
+      <env name="DB_URL" value="jdbc:postgresql://localhost:5432/auth_db" />
+      <env name="DB_USERNAME" value="auth_user" />
+      <env name="DB_PASSWORD" value="auth_password" />
+      <env name="SPRING_PROFILES_ACTIVE" value="dev" />
+    </envs>
+    <module name="authservice.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="br.com.authservice.AuthServiceApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

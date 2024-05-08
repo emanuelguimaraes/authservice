@@ -6,4 +6,5 @@ public interface RepositorioUsuario {
     Usuario buscarUsuarioPorEmail(String email);
     Long salvarUsuario(Usuario usuario);
     Usuario buscarUsuarioPorToken(String token);
+    void removerTodosUsuarios();
 }

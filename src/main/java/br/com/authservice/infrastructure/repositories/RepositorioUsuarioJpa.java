@@ -43,6 +43,11 @@ public interface RepositorioUsuarioJpa extends JpaRepository<UsuarioEntity, Long
                 .orElse(null);
     }
 
+    @Override
+    default void removerTodosUsuarios() {
+        this.deleteAll();
+    }
+
     Optional<UsuarioEntity> findByEmail(String email);
 
     Optional<UsuarioEntity> findByTokensValor(String token);

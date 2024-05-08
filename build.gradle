@@ -1,6 +1,6 @@
 plugins {
  id 'java'
- id 'groovy' // Adicione este plugin para suportar Groovy
+ id 'groovy'
  id 'org.springframework.boot' version '3.2.5'
  id 'io.spring.dependency-management' version '1.1.4'
 }
@@ -43,15 +43,23 @@ dependencies {
  implementation 'org.projectlombok:lombok'
  implementation 'com.fasterxml.jackson.core:jackson-databind'
  implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+ implementation 'com.fasterxml.jackson.core:jackson-databind'
  annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 }
 
 // Test dependencies
 dependencies {
- testImplementation 'org.springframework.boot:spring-boot-starter-test'
- testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0' // Adicione esta linha
- testImplementation 'org.spockframework:spock-junit4:2.0-groovy-3.0' // Adicione esta linha
- testImplementation 'org.codehaus.groovy:groovy-all:3.0.7' // Adicione esta linha
+ testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+ // Spring Spock test dependencies
+ testImplementation 'org.spockframework:spock-spring:2.4-M1-groovy-4.0'
+
+ // Spock test dependencies
+ testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
+
+ // Junit dependencies
+ testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+ testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 dependencies {

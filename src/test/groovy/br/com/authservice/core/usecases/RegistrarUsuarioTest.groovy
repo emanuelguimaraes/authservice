@@ -57,6 +57,7 @@ class RegistrarUsuarioTest extends Specification {
         registrarUsuario.execute(nome, email, senha, permissoes)
 
         then: "an EmailJaCadastradoException is thrown"
-        EmailJaCadastradoException e = thrown()
+        EmailJaCadastradoException exception = thrown()
+        exception.message == "Email já cadastrado no sistema."
     }
 }

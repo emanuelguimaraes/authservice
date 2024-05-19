@@ -15,16 +15,16 @@ import java.util.List;
 @AllArgsConstructor
 public class UsuarioDTO {
 
-    @NotBlank(message = "Nome é obrigatório")
+    @NotBlank(message = "Name is required")
     private String nome;
 
-    @Email(message = "Email inválido")
-    @NotBlank(message = "Email é obrigatório")
+    @Email(message = "Invalid email")
+    @NotBlank(message = "Email is required")
     private String email;
 
-    @NotBlank(message = "Senha é obrigatória")
+    @NotBlank(message = "Password is required")
     private String senha;
 
-    @NotNull(message = "Permissões são obrigatórias")
+    @NotNull(message = "Permissions are required")
     private List<Permissao> permissoes;
 }

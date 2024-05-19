@@ -70,6 +70,9 @@ class UsuarioControllerIntegrationTest extends Specification {
 
         then: "the response status is 409 Conflict"
         result.andExpect(status().isConflict())
+
+        and: "the error message is correct"
+        result.andReturn().getResponse().getContentAsString() == "Email já cadastrado no sistema."
     }
 
     def "registrarUsuario endpoint throws MethodArgumentNotValidException for invalid user data"() {
@@ -83,5 +86,11 @@ class UsuarioControllerIntegrationTest extends Specification {
 
         then: "the response status is 400 Bad Request"
         result.andExpect(status().isBadRequest())
+
+        and: "the error messages are correct"
+        def errors = objectMapper.readValue(result.andReturn().getResponse().getContentAsString(), HashMap.class)
+        errors.get("nome") == "Name is required"
+        errors.get("email") == "Invalid email"
+        errors.get("senha") == "Password is required"
     }
 }
